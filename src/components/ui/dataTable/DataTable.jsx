@@ -1,71 +1,65 @@
 import { useReducer, useEffect } from "react";
-
-const actionTypes = {
-  SET_DATA: "SET_DATA",
-  SET_COLUMNS: "SET_COLUMNS",
-};
-
-const setData = data => ({
-  type: actionTypes.SET_DATA,
-  payload: data,
-});
-
-const setColumns = columns => ({
-  type: actionTypes.SET_COLUMNS,
-  payload: columns,
-});
+import {
+  setColumns,
+  setData,
+  setCurrentPage,
+  setPageSize,
+  setSortBy,
+  setSortDirection,
+  setFilter,
+} from "./logic/actionCreators";
+import dataTableReducer from "./logic/reducer";
+import Table from "./table/Table";
+import "./DataTable.css";
 
 const initialState = {
   data: [],
   columns: [],
-  loading: false,
-  error: null,
-  page: 1,
+  currentPage: 1,
   pageSize: 10,
-  total: 0,
   sortBy: "",
   sortDirection: "asc",
   filter: "",
 };
 
-function dataTableReducer(state, action) {
-  switch (action.type) {
-    case actionTypes.SET_DATA:
-      return { ...state, data: action.payload };
-    case actionTypes.SET_COLUMNS:
-      return { ...state, columns: action.payload };
-    default:
-      return state;
-  }
-}
-
 function DataTable({ dataTable }) {
   const [state, dispatch] = useReducer(dataTableReducer, initialState);
+  const { data, columns, currentPage, pageSize, sortBy, sortDirection, filter } = state;
 
   useEffect(() => {
     dispatch(setColumns(dataTable.columns));
     dispatch(setData(dataTable.data));
   }, [dataTable]);
 
+  console.log("state", state);
+
   return (
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          {state.columns.map((column, index) => (
-            <th key={`${index}-${column.data}`}>{column.title}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {state.data.map((row, index) => (
-          <tr key={`${index}-${row.firstName}`}>
-            {state.columns.map((column, index) => (
-              <td key={`${index}-${column.data}`}>{row[column.data]}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="dataTables_wrapper">
+      <div className="dataTables_length">
+        <label>
+          show{" "}
+          <select onChange={e => dispatch(setPageSize(parseInt(e.target.value)))}>
+            <option>10</option>
+            <option>25</option>
+            <option>50</option>
+            <option>100</option>
+          </select>{" "}
+          entries
+        </label>
+      </div>
+
+      <div className="dataTables_filter">
+        <label>
+          Search: <input type="search" placeholder="" />
+        </label>
+      </div>
+
+      <Table columns={columns} data={data} />
+
+      <div className="dataTables_info" role="status" aria-live="polite">
+        Showing 1 to 10 of 11 entries
+      </div>
+    </div>
   );
 }
 
