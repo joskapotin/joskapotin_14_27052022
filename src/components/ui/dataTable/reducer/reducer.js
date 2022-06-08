@@ -4,12 +4,16 @@ export const initialState = {
   id: "",
   columns: [],
   data: [],
-  options: {},
+  options: {
+    pageSizeOptions: [10, 25, 50, 100],
+  },
   currentPage: 1,
+  totalPages: 0,
   pageSize: 10,
   sortBy: "",
   sortDirection: "desc",
   filter: "",
+  filterResults: [],
 };
 
 function dataTableReducer(state, action) {
@@ -22,8 +26,12 @@ function dataTableReducer(state, action) {
       return { ...state, data: action.payload };
     case actionTypes.SET_OPTIONS:
       return { ...state, options: action.payload };
+    case actionTypes.SET_PAGE_SIZE_OPTIONS:
+      return { ...state, options: { ...state.options, pageSizeOptions: action.payload } };
     case actionTypes.SET_CURRENT_PAGE:
       return { ...state, currentPage: action.payload };
+    case actionTypes.SET_TOTAL_PAGES:
+      return { ...state, totalPages: action.payload };
     case actionTypes.SET_PAGE_SIZE:
       return { ...state, pageSize: action.payload, currentPage: 1 };
     case actionTypes.SET_SORT_BY:
@@ -31,7 +39,9 @@ function dataTableReducer(state, action) {
     case actionTypes.SET_SORT_DIRECTION:
       return { ...state, sortDirection: state.sortDirection === "asc" ? "desc" : "asc" };
     case actionTypes.SET_FILTER:
-      return { ...state, filter: action.payload };
+      return { ...state, currentPage: 1, filter: action.payload };
+    case actionTypes.SET_FILTER_RESULTS:
+      return { ...state, filterResults: action.payload };
     default:
       return state;
   }

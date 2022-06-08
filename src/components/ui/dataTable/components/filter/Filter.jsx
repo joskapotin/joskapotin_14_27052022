@@ -1,4 +1,4 @@
-import { useDataTableContext } from "../../context/DataTableContext";
+import useDataTableContext from "../../hooks/useDataTableContext";
 import { setFilter } from "../../reducer/actionCreators";
 
 function Filter() {

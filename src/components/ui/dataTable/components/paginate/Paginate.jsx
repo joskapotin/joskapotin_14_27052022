@@ -1,54 +1,61 @@
-import { useDataTableContext } from "../../context/DataTableContext";
-import { setCurrentPage } from "../../reducer/actionCreators";
+import { useEffect } from "react";
+import useDataTableContext from "../../hooks/useDataTableContext";
+import { setCurrentPage, setTotalPages } from "../../reducer/actionCreators";
 
 function Paginate() {
   const [state, dispatch] = useDataTableContext();
-  const { id, data, currentPage, pageSize } = state;
-  const totalRow = data.length;
-  const totalPage = Math.ceil(totalRow / pageSize);
+  const { id, currentPage, totalPages, pageSize, filterResults } = state;
+
+  useEffect(() => {
+    dispatch(setTotalPages(Math.ceil(filterResults.length / pageSize)));
+  }, [filterResults, pageSize, dispatch]);
 
   const handleClick = page => {
     dispatch(setCurrentPage(page));
   };
 
-  const createPageButtonElements = () => {
-    const pageButtonElements = [];
-    for (let i = 1; i <= totalPage; i++) {
-      pageButtonElements.push(
+  const ButtonElements = () => {
+    const ButtonElements = [];
+
+    for (let i = 0; i <= totalPages + 1; i++) {
+      const className = ["paginate_button"];
+      let change = i;
+      let text = i;
+
+      if (i === 0) {
+        className.push("previous");
+        change = currentPage - 1;
+        text = "Previous";
+      }
+
+      if (i === totalPages + 1) {
+        className.push("next");
+        change = currentPage + 1;
+        text = "Next";
+      }
+
+      if (i === currentPage) {
+        className.push("paginate_current");
+      }
+
+      ButtonElements.push(
         <button
           key={`page-${i}`}
-          className={`paginate_button ${i === currentPage ? "paginate_current" : ""}`}
+          className={className.join(" ")}
           aria-controls={id}
-          onClick={() => handleClick(i)}
+          onClick={() => handleClick(change)}
+          disabled={
+            (currentPage === 1 && i === 0) || (currentPage === totalPages && i === totalPages + 1)
+          }
         >
-          {i}
+          {text}
         </button>
       );
     }
-    return pageButtonElements;
+    return ButtonElements;
   };
 
-  return (
-    <div className="dataTable_paginate">
-      <button
-        className="paginate_button previous"
-        aria-controls={id}
-        onClick={() => handleClick(currentPage - 1)}
-        disabled={currentPage === 1}
-      >
-        Previous
-      </button>
-      {createPageButtonElements()}
-      <button
-        className="paginate_button next"
-        aria-controls={id}
-        onClick={() => handleClick(currentPage + 1)}
-        disabled={currentPage === totalPage}
-      >
-        Next
-      </button>
-    </div>
-  );
+  return <div className="dataTable_paginate">{ButtonElements()}</div>;
 }
 
 export default Paginate;

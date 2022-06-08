@@ -20,9 +20,19 @@ export const setOptions = options => ({
   payload: options,
 });
 
+export const setPageSizeOptions = pageSizeOptions => ({
+  type: actionTypes.SET_PAGE_SIZE_OPTIONS,
+  payload: pageSizeOptions,
+});
+
 export const setCurrentPage = page => ({
   type: actionTypes.SET_CURRENT_PAGE,
   payload: page,
+});
+
+export const setTotalPages = totalPages => ({
+  type: actionTypes.SET_TOTAL_PAGES,
+  payload: totalPages,
 });
 
 export const setPageSize = pageSize => ({
@@ -42,4 +52,9 @@ export const setSortDirection = () => ({
 export const setFilter = filter => ({
   type: actionTypes.SET_FILTER,
   payload: filter,
+});
+
+export const setFilterResults = filterResults => ({
+  type: actionTypes.SET_FILTER_RESULTS,
+  payload: filterResults,
 });

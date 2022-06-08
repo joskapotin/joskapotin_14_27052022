@@ -1,8 +1,14 @@
-import { useDataTableContext } from "../../context/DataTableContext";
+import useDataTableContext from "../../hooks/useDataTableContext";
 import { setPageSize } from "../../reducer/actionCreators";
 
 function PageSize() {
-  const [, dispatch] = useDataTableContext();
+  const [
+    {
+      pageSize,
+      options: { pageSizeOptions },
+    },
+    dispatch,
+  ] = useDataTableContext();
 
   const handleChange = e => {
     dispatch(setPageSize(parseInt(e.target.value)));
@@ -12,11 +18,12 @@ function PageSize() {
     <div className="dataTable_length">
       <label>
         show{" "}
-        <select onChange={handleChange}>
-          <option>10</option>
-          <option>25</option>
-          <option>50</option>
-          <option>100</option>
+        <select onChange={handleChange} value={pageSize}>
+          {pageSizeOptions.map((option, index) => (
+            <option key={`${index}-${option}`} value={option}>
+              {option}
+            </option>
+          ))}
         </select>{" "}
         entries
       </label>

@@ -16,7 +16,7 @@ const dataTable = {
     { title: "Zip Code", data: "zipCode" },
   ],
   data: getEmployees(),
-  options: { pagination: true },
+  options: { pageSizeOptions: [10, 25, 50, 100] },
 };
 
 function EmployeeList() {

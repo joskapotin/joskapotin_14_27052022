@@ -1,79 +1,27 @@
-import { useDeferredValue } from "react";
-import { useDataTableContext } from "../../context/DataTableContext";
-import { setSortBy, setSortDirection } from "../../reducer/actionCreators";
-
-const sortData = (data, sortBy, sortDirection) => {
-  const sortedData = data.sort((a, b) => {
-    if (sortDirection === "asc") {
-      return a[sortBy] > b[sortBy] ? 1 : -1;
-    }
-    return a[sortBy] < b[sortBy] ? 1 : -1;
-  });
-  return sortedData;
-};
-
-const filterData = (data, filter) => {
-  const filteredData = data.filter(row => {
-    return Object.values(row).find(value => {
-      return value.toLowerCase().includes(filter.toLowerCase());
-    });
-  });
-  return filteredData;
-};
+import { useEffect } from "react";
+import useDataTableContext from "../../hooks/useDataTableContext";
+import { setFilterResults } from "../../reducer/actionCreators";
+import { sortData, filterData } from "./utils";
+import Head from "./Head";
+import Body from "./Body";
 
 function Table() {
-  const [{ id, columns, data, currentPage, pageSize, sortBy, sortDirection, filter }, dispatch] =
-    useDataTableContext();
-  const deferredFilter = useDeferredValue(filter);
+  const [
+    { id, data, currentPage, pageSize, sortBy, sortDirection, filter, filterResults },
+    dispatch,
+  ] = useDataTableContext();
 
-  const sortedData = sortData(data, sortBy, sortDirection);
-  const filteredData = deferredFilter ? filterData(sortedData, deferredFilter) : sortedData;
-  const paginatedData = filteredData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  useEffect(() => {
+    dispatch(setFilterResults(filterData(data, filter)));
+  }, [filter, data, dispatch]);
 
-  const displayedData = paginatedData;
-
-  const labelClassName = column => {
-    if (column === sortBy) {
-      if (sortDirection === "asc") return "sorting_asc";
-      return "sorting_desc";
-    }
-    return "sorting";
-  };
-
-  const handleSort = column => {
-    if (column !== sortBy) dispatch(setSortBy(column));
-    dispatch(setSortDirection());
-  };
-
-  const labels = columns.map((column, index) => (
-    <th
-      key={`${index}-${column.data}`}
-      className={labelClassName(column.data)}
-      onClick={() => handleSort(column.data)}
-    >
-      {column.title}
-    </th>
-  ));
-
-  const rows = displayedData.map((row, index) => (
-    <tr key={`${index}-${row.firstName}`}>
-      {columns.map((column, index) => (
-        <td
-          key={`${index}-${column.data}`}
-          className={column.data === sortBy ? "current-column" : ""}
-        >
-          {row[column.data]}
-        </td>
-      ))}
-    </tr>
-  ));
+  const sortedData = sortData({ filterResults, sortBy, sortDirection });
+  const paginatedData = sortedData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   return (
     <table className="dataTable" id={id}>
-      <thead>
-        <tr>{labels}</tr>
-      </thead>
-      <tbody>{rows}</tbody>
+      <Head />
+      <Body data={paginatedData} />
     </table>
   );
 }

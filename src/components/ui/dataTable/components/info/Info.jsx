@@ -1,16 +1,18 @@
-import { useDataTableContext } from "../../context/DataTableContext";
+import useDataTableContext from "../../hooks/useDataTableContext";
 
 function Info() {
-  const [{ data, currentPage, pageSize }] = useDataTableContext();
-  const totalRow = data.length;
-  const totalPage = Math.ceil(totalRow / pageSize);
+  const [{ data, currentPage, totalPages, pageSize, filter, filterResults }] =
+    useDataTableContext();
+  const totalEntries = data.length;
+  const totalRow = filterResults.length;
   const currentRow = (currentPage - 1) * pageSize + 1;
   const lastRow =
-    pageSize > totalRow || currentPage === totalPage ? totalRow : currentPage * pageSize;
+    pageSize > totalRow || currentPage === totalPages ? totalRow : currentPage * pageSize;
 
   return (
     <div className="dataTable_info" role="status" aria-live="polite">
-      Showing {currentRow} to {lastRow} of {totalRow} entries (filtered from 45 total entries)
+      Showing {currentRow} to {lastRow} of {totalRow} entries{" "}
+      {filter && <span>(filtered from {totalEntries} total entries)</span>}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { DataTableContextProvider } from "./context/DataTableContext";
+import DataTableContextProvider from "./context/DataTableContext";
 import PageSize from "./components/pageSize/PageSize";
 import Filter from "./components/filter/Filter";
 import Table from "./components/table/Table";
