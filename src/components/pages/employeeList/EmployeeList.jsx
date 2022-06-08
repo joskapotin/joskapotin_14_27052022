@@ -2,17 +2,22 @@ import { Link } from "react-router-dom";
 import DataTable from "../../ui/dataTable/DataTable";
 import { getEmployees } from "../../../services/api";
 
-const columns = [
-  { title: "First Name", data: "firstName" },
-  { title: "Last Name", data: "lastName" },
-  { title: "Start Date", data: "startDate" },
-  { title: "Department", data: "department" },
-  { title: "Date of Birth", data: "dateOfBirth" },
-  { title: "Street", data: "street" },
-  { title: "City", data: "city" },
-  { title: "State", data: "state" },
-  { title: "Zip Code", data: "zipCode" },
-];
+const dataTable = {
+  id: "employee-table",
+  columns: [
+    { title: "First Name", data: "firstName" },
+    { title: "Last Name", data: "lastName" },
+    { title: "Start Date", data: "startDate" },
+    { title: "Department", data: "department" },
+    { title: "Date of Birth", data: "dateOfBirth" },
+    { title: "Street", data: "street" },
+    { title: "City", data: "city" },
+    { title: "State", data: "state" },
+    { title: "Zip Code", data: "zipCode" },
+  ],
+  data: getEmployees(),
+  options: { pagination: true },
+};
 
 function EmployeeList() {
   return (
@@ -20,7 +25,7 @@ function EmployeeList() {
       <div className="text-center">
         <h1>Current Employees</h1>
       </div>
-      <DataTable dataTable={{ data: getEmployees(), columns }} />
+      <DataTable dataTable={dataTable} />
       <p className="text-center">
         <Link to="/">Home</Link>
       </p>

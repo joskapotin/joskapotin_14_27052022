@@ -101,20 +101,16 @@ fieldset {
   overflow-y: auto;
   outline: 0;
   background-color: rgba(0, 0, 0, 0.8);
+  display: grid;
+  place-content: center;
 }
 
 .modal-dialog {
-  position: relative;
-  width: auto;
-  margin: 0.5rem;
   pointer-events: none;
   max-width: 500px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .modal-content {
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;

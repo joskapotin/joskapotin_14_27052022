@@ -119,7 +119,7 @@ function CreateEmployee() {
               </div>
               <div className="modal-body">
                 <p>
-                  Employee was successfully created. You can view the employee{" "}
+                  Employee was successfully created. You can view the employees{" "}
                   <Link to="employee-list">here</Link>.
                 </p>
               </div>

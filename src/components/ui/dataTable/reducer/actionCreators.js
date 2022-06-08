@@ -1,5 +1,10 @@
 import actionTypes from "./actionTypes";
 
+export const setId = id => ({
+  type: actionTypes.SET_ID,
+  payload: { id },
+});
+
 export const setColumns = columns => ({
   type: actionTypes.SET_COLUMNS,
   payload: columns,
@@ -8,6 +13,11 @@ export const setColumns = columns => ({
 export const setData = data => ({
   type: actionTypes.SET_DATA,
   payload: data,
+});
+
+export const setOptions = options => ({
+  type: actionTypes.SET_OPTIONS,
+  payload: options,
 });
 
 export const setCurrentPage = page => ({
@@ -25,9 +35,8 @@ export const setSortBy = sortBy => ({
   payload: sortBy,
 });
 
-export const setSortDirection = sortDirection => ({
+export const setSortDirection = () => ({
   type: actionTypes.SET_SORT_DIRECTION,
-  payload: sortDirection,
 });
 
 export const setFilter = filter => ({
