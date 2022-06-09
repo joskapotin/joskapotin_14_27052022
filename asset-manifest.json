@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.66e68a58.css",
-    "main.js": "/static/js/main.7246a984.js",
-    "index.html": "/index.html",
-    "main.66e68a58.css.map": "/static/css/main.66e68a58.css.map",
-    "main.7246a984.js.map": "/static/js/main.7246a984.js.map"
+    "main.css": "/joskapotin_14_27052022/static/css/main.66e68a58.css",
+    "main.js": "/joskapotin_14_27052022/static/js/main.77251159.js",
+    "index.html": "/joskapotin_14_27052022/index.html",
+    "main.66e68a58.css.map": "/joskapotin_14_27052022/static/css/main.66e68a58.css.map",
+    "main.77251159.js.map": "/joskapotin_14_27052022/static/js/main.77251159.js.map"
   },
   "entrypoints": [
     "static/css/main.66e68a58.css",
-    "static/js/main.7246a984.js"
+    "static/js/main.77251159.js"
   ]
 }
