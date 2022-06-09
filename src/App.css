@@ -10,15 +10,14 @@
   justify-content: center;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.create-employee-form {
+  max-width: 300px;
 }
 
-.create-employee-form {
-  margin-left: auto;
+.container {
+  width: 100%;
   margin-right: auto;
+  margin-left: auto;
 }
 
 /** FORMS **/
@@ -49,6 +48,11 @@ fieldset {
 /* text-aligment */
 .text-center {
   text-align: center !important;
+}
+
+.mx-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
 
 /* margin */

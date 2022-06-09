@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
-import DataTable from "../../ui/dataTable/DataTable"
+import { DataTable } from "data-table-jp"
 import { getEmployees } from "../../../services/api"
 
-const dataTable = {
+const dataTable = () => ({
   id: "employee-table",
   columns: [
     { title: "First Name", data: "firstName" },
@@ -17,7 +17,7 @@ const dataTable = {
   ],
   data: getEmployees(),
   options: { pageSizeOptions: [10, 25, 50, 100] },
-}
+})
 
 function EmployeeList() {
   return (
@@ -25,7 +25,7 @@ function EmployeeList() {
       <div className="text-center">
         <h1>Current Employees</h1>
       </div>
-      <DataTable dataTable={dataTable} />
+      <DataTable dataTable={dataTable()} />
       <p className="text-center">
         <Link to="/">Home</Link>
       </p>
