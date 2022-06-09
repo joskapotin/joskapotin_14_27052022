@@ -1,60 +1,60 @@
-import actionTypes from "./actionTypes";
+import actionTypes from "./actionTypes"
 
-export const setId = id => ({
+export const setId = (id) => ({
   type: actionTypes.SET_ID,
   payload: { id },
-});
+})
 
-export const setColumns = columns => ({
+export const setColumns = (columns) => ({
   type: actionTypes.SET_COLUMNS,
   payload: columns,
-});
+})
 
-export const setData = data => ({
+export const setData = (data) => ({
   type: actionTypes.SET_DATA,
   payload: data,
-});
+})
 
-export const setOptions = options => ({
+export const setOptions = (options) => ({
   type: actionTypes.SET_OPTIONS,
   payload: options,
-});
+})
 
-export const setPageSizeOptions = pageSizeOptions => ({
+export const setPageSizeOptions = (pageSizeOptions) => ({
   type: actionTypes.SET_PAGE_SIZE_OPTIONS,
   payload: pageSizeOptions,
-});
+})
 
-export const setCurrentPage = page => ({
+export const setCurrentPage = (page) => ({
   type: actionTypes.SET_CURRENT_PAGE,
   payload: page,
-});
+})
 
-export const setTotalPages = totalPages => ({
+export const setTotalPages = (totalPages) => ({
   type: actionTypes.SET_TOTAL_PAGES,
   payload: totalPages,
-});
+})
 
-export const setPageSize = pageSize => ({
+export const setPageSize = (pageSize) => ({
   type: actionTypes.SET_PAGE_SIZE,
   payload: pageSize,
-});
+})
 
-export const setSortBy = sortBy => ({
+export const setSortBy = (sortBy) => ({
   type: actionTypes.SET_SORT_BY,
   payload: sortBy,
-});
+})
 
 export const setSortDirection = () => ({
   type: actionTypes.SET_SORT_DIRECTION,
-});
+})
 
-export const setFilter = filter => ({
+export const setFilter = (filter) => ({
   type: actionTypes.SET_FILTER,
   payload: filter,
-});
+})
 
-export const setFilterResults = filterResults => ({
+export const setFilterResults = (filterResults) => ({
   type: actionTypes.SET_FILTER_RESULTS,
   payload: filterResults,
-});
+})

@@ -11,6 +11,6 @@ const actionTypes = {
   SET_SORT_DIRECTION: "SET_SORT_DIRECTION",
   SET_FILTER: "SET_FILTER",
   SET_FILTER_RESULTS: "SET_FILTER_RESULTS",
-};
+}
 
-export default actionTypes;
+export default actionTypes

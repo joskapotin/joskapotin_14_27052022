@@ -1,4 +1,4 @@
-import actionTypes from "./actionTypes";
+import actionTypes from "./actionTypes"
 
 export const initialState = {
   id: "",
@@ -14,37 +14,43 @@ export const initialState = {
   sortDirection: "desc",
   filter: "",
   filterResults: [],
-};
+}
 
 function dataTableReducer(state, action) {
   switch (action.type) {
     case actionTypes.SET_ID:
-      return { ...state, id: action.payload.id };
+      return { ...state, id: action.payload.id }
     case actionTypes.SET_COLUMNS:
-      return { ...state, columns: action.payload };
+      return { ...state, columns: action.payload }
     case actionTypes.SET_DATA:
-      return { ...state, data: action.payload };
+      return { ...state, data: action.payload }
     case actionTypes.SET_OPTIONS:
-      return { ...state, options: action.payload };
+      return { ...state, options: action.payload }
     case actionTypes.SET_PAGE_SIZE_OPTIONS:
-      return { ...state, options: { ...state.options, pageSizeOptions: action.payload } };
+      return {
+        ...state,
+        options: { ...state.options, pageSizeOptions: action.payload },
+      }
     case actionTypes.SET_CURRENT_PAGE:
-      return { ...state, currentPage: action.payload };
+      return { ...state, currentPage: action.payload }
     case actionTypes.SET_TOTAL_PAGES:
-      return { ...state, totalPages: action.payload };
+      return { ...state, totalPages: action.payload }
     case actionTypes.SET_PAGE_SIZE:
-      return { ...state, pageSize: action.payload, currentPage: 1 };
+      return { ...state, pageSize: action.payload, currentPage: 1 }
     case actionTypes.SET_SORT_BY:
-      return { ...state, sortBy: action.payload, sortDirection: "desc" };
+      return { ...state, sortBy: action.payload, sortDirection: "desc" }
     case actionTypes.SET_SORT_DIRECTION:
-      return { ...state, sortDirection: state.sortDirection === "asc" ? "desc" : "asc" };
+      return {
+        ...state,
+        sortDirection: state.sortDirection === "asc" ? "desc" : "asc",
+      }
     case actionTypes.SET_FILTER:
-      return { ...state, currentPage: 1, filter: action.payload };
+      return { ...state, currentPage: 1, filter: action.payload }
     case actionTypes.SET_FILTER_RESULTS:
-      return { ...state, filterResults: action.payload };
+      return { ...state, filterResults: action.payload }
     default:
-      return state;
+      return state
   }
 }
 
-export default dataTableReducer;
+export default dataTableReducer

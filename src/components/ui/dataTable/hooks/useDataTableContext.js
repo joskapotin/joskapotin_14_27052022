@@ -1,9 +1,9 @@
-import { useContext } from "react";
-import { DataTableContext } from "../context/DataTableContext";
+import { useContext } from "react"
+import { DataTableContext } from "../DataTable"
 
 function useDataTableContext() {
-  const [state, dispatch] = useContext(DataTableContext);
-  return [state, dispatch];
+  const [state, dispatch] = useContext(DataTableContext)
+  return [state, dispatch]
 }
 
-export default useDataTableContext;
+export default useDataTableContext

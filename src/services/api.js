@@ -1,7 +1,7 @@
-import mockEmployees from "../mock/employees";
+import mockEmployees from '../mock/employees';
 
 export function getEmployees() {
-  const employees = JSON.parse(localStorage.getItem("employees"));
+  const employees = JSON.parse(localStorage.getItem('employees'));
   if (employees) {
     return employees;
   }
@@ -10,8 +10,8 @@ export function getEmployees() {
 
 export function saveEmployee(employee) {
   if (employee) {
-    const employees = JSON.parse(localStorage.getItem("employees")) || [];
+    const employees = JSON.parse(localStorage.getItem('employees')) || [];
     employees.push(employee);
-    localStorage.setItem("employees", JSON.stringify(employees));
+    localStorage.setItem('employees', JSON.stringify(employees));
   }
 }

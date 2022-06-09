@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import DataTable from "../../ui/dataTable/DataTable";
-import { getEmployees } from "../../../services/api";
+import { Link } from "react-router-dom"
+import DataTable from "../../ui/dataTable/DataTable"
+import { getEmployees } from "../../../services/api"
 
 const dataTable = {
   id: "employee-table",
@@ -17,7 +17,7 @@ const dataTable = {
   ],
   data: getEmployees(),
   options: { pageSizeOptions: [10, 25, 50, 100] },
-};
+}
 
 function EmployeeList() {
   return (
@@ -30,7 +30,7 @@ function EmployeeList() {
         <Link to="/">Home</Link>
       </p>
     </div>
-  );
+  )
 }
 
-export default EmployeeList;
+export default EmployeeList

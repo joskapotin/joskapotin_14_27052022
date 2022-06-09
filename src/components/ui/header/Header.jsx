@@ -1,11 +1,9 @@
-import Title from "../title/Title";
-
 function Header() {
   return (
-    <Title>
+    <div className="title">
       <h1>HRnet</h1>
-    </Title>
-  );
+    </div>
+  )
 }
 
-export default Header;
+export default Header

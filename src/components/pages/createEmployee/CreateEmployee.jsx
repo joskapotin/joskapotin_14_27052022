@@ -1,19 +1,19 @@
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import useToggle from "../../../utils/hooks/useToggle";
-import Header from "../../ui/header/Header";
-import SelectInput from "../../ui/selectInput/SelectInput";
-import formOptions from "../../../constants/formOptions";
-import { saveEmployee } from "../../../services/api";
+import { Link } from "react-router-dom"
+import { useForm } from "react-hook-form"
+import useToggle from "../../../utils/hooks/useToggle"
+import Header from "../../ui/header/Header"
+import SelectInput from "../../ui/selectInput/SelectInput"
+import formOptions from "../../../constants/formOptions"
+import { saveEmployee } from "../../../services/api"
 
 function CreateEmployee() {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = employee => {
-    saveEmployee(employee);
-    toggle();
-  };
+  const [isOpen, toggle] = useToggle(false)
+  const { register, handleSubmit } = useForm()
 
-  const [isOpen, toggle] = useToggle(false);
+  const onSubmit = (employee) => {
+    saveEmployee(employee)
+    toggle()
+  }
 
   return (
     <div className="container">
@@ -29,28 +29,44 @@ function CreateEmployee() {
           <label htmlFor="firstName" className="form-label">
             First Name
           </label>
-          <input type="text" className="form-control" {...register("firstName")} />
+          <input
+            type="text"
+            className="form-control"
+            {...register("firstName")}
+          />
         </div>
 
         <div className="mb-3">
           <label htmlFor="lastName" className="form-label">
             Last Name
           </label>
-          <input type="text" className="form-control" {...register("lastName")} />
+          <input
+            type="text"
+            className="form-control"
+            {...register("lastName")}
+          />
         </div>
 
         <div className="mb-3">
           <label htmlFor="dateOfBirth" className="form-label">
             Date of Birth
           </label>
-          <input type="date" className="form-control" {...register("dateOfBirth")} />
+          <input
+            type="date"
+            className="form-control"
+            {...register("dateOfBirth")}
+          />
         </div>
 
         <div className="mb-3">
           <label htmlFor="startDate" className="form-label">
             Start Date
           </label>
-          <input type="date" className="form-control" {...register("startDate")} />
+          <input
+            type="date"
+            className="form-control"
+            {...register("startDate")}
+          />
         </div>
 
         <fieldset className="mb-3">
@@ -60,7 +76,11 @@ function CreateEmployee() {
             <label htmlFor="street" className="form-label">
               Street
             </label>
-            <input type="text" className="form-control" {...register("street")} />
+            <input
+              type="text"
+              className="form-control"
+              {...register("street")}
+            />
           </div>
 
           <div className="mb-3">
@@ -85,7 +105,11 @@ function CreateEmployee() {
             <label htmlFor="zipCode" className="form-label">
               Zip Code
             </label>
-            <input type="number" className="form-control" {...register("zipCode")} />
+            <input
+              type="number"
+              className="form-control"
+              {...register("zipCode")}
+            />
           </div>
         </fieldset>
 
@@ -115,7 +139,7 @@ function CreateEmployee() {
                   className="btn-close"
                   onClick={toggle}
                   aria-label="Close"
-                ></button>
+                />
               </div>
               <div className="modal-body">
                 <p>
@@ -124,7 +148,11 @@ function CreateEmployee() {
                 </p>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={toggle}>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={toggle}
+                >
                   Close
                 </button>
               </div>
@@ -133,7 +161,7 @@ function CreateEmployee() {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default CreateEmployee;
+export default CreateEmployee
