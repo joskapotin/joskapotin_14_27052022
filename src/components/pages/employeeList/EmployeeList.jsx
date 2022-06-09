@@ -15,7 +15,7 @@ const dataTable = () => ({
     { title: "State", data: "state" },
     { title: "Zip Code", data: "zipCode" },
   ],
-  data: getEmployees(),
+  data: getEmployees,
   options: { pageSizeOptions: [10, 25, 50, 100] },
 })
 
@@ -25,7 +25,7 @@ function EmployeeList() {
       <div className="text-center">
         <h1>Current Employees</h1>
       </div>
-      <DataTable dataTable={dataTable()} />
+      <DataTable dataTable={dataTable} />
       <p className="text-center">
         <Link to="/">Home</Link>
       </p>
