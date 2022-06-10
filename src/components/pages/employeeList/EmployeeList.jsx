@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import { DataTable } from "data-table-jp"
-// import DataTable from "../../ui/dataTable/DataTable"
 import { getEmployees } from "../../../services/api"
 
 const dataTable = {
