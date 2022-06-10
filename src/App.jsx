@@ -1,15 +1,19 @@
+import { lazy, Suspense } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import CreateEmployee from "./components/pages/createEmployee/CreateEmployee"
-import EmployeeList from "./components/pages/employeeList/EmployeeList"
 import "./App.css"
+
+const CreateEmployee = lazy(() => import("./components/pages/createEmployee/CreateEmployee"))
+const EmployeeList = lazy(() => import("./components/pages/employeeList/EmployeeList"))
 
 function App() {
   return (
-    <Router basename="/joskapotin_14_27052022">
-      <Routes>
-        <Route path="/" element={<CreateEmployee />} />
-        <Route path="employee-list" element={<EmployeeList />} />
-      </Routes>
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<CreateEmployee />} />
+          <Route path="employee-list" element={<EmployeeList />} />
+        </Routes>
+      </Suspense>
     </Router>
   )
 }
