@@ -1,10 +1,12 @@
 import mockedEmployees from "./mock/employees.js"
 
 $(() => {
-  const employees = JSON.parse(localStorage.getItem("employees"))
+  const localEmployees = JSON.parse(localStorage.getItem("employees"))
+
+  const employees = localEmployees || mockedEmployees
 
   $("#employee-table").DataTable({
-    data: mockedEmployees,
+    data: employees,
     columns: [
       { title: "First Name", data: "firstName" },
       { title: "Last Name", data: "lastName" },
