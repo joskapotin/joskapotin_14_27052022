@@ -31,7 +31,7 @@ function CreateEmployee() {
         <Input type="text" name="lastName" label="Last Name" register={register} />
         <Input type="data" name="dateOfBirth" label="Date of Birth" register={register} />
         <Input type="data" name="startDate" label="Start Date" register={register} />
-        <FieldSet title="Adress">
+        <FieldSet title="Address">
           <Input type="text" name="street" label="Street" register={register} />
           <Input type="text" name="city" label="City" register={register} />
           <Select name="state" label="State" options={formOptions.states} register={register} />
