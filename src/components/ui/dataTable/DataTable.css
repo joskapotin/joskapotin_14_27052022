@@ -1,0 +1,82 @@
+.dataTable_wrapper {
+  display: grid;
+  justify-content: center;
+}
+
+.dataTable_header,
+.dataTable_footer {
+  margin-top: 1rem;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dataTable_filter {
+  text-align: right;
+}
+
+.dataTable {
+  background-color: white;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-bottom: 1px solid #111;
+}
+
+.dataTable thead th {
+  padding: 10px 18px;
+  border-bottom: 1px solid #111;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+
+table.dataTable thead .sorting {
+  background-image: url("./assets/images/sort_both.png");
+}
+
+table.dataTable thead .sorting_asc {
+  background-image: url("./assets/images/sort_asc.png");
+}
+
+table.dataTable thead .sorting_desc {
+  background-image: url("./assets/images/sort_desc.png");
+}
+
+.dataTable tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.dataTable tbody tr:first-child td {
+  border-top: none;
+}
+
+.dataTable tbody td {
+  padding: 8px 10px;
+  border-top: 1px solid #ddd;
+}
+
+.dataTable tr:nth-child(even) .current-column {
+  background-color: #fafafa;
+}
+
+.dataTable tr:nth-child(odd) .current-column {
+  background-color: #f1f1f1;
+}
+
+.dataTable_paginate {
+  text-align: right;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.paginate_current {
+  font-weight: bolder;
+}

@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react"
 import { HashRouter as Router, Routes, Route } from "react-router-dom"
+import Loading from "./components/ui/loading/Loading"
 import "./App.css"
 
 const CreateEmployee = lazy(() => import("./components/pages/createEmployee/CreateEmployee"))
@@ -8,7 +9,7 @@ const EmployeeList = lazy(() => import("./components/pages/employeeList/Employee
 function App() {
   return (
     <Router basemname={`/${process.env.PUBLIC_URL}`}>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<CreateEmployee />} />
           <Route path="employee-list" element={<EmployeeList />} />

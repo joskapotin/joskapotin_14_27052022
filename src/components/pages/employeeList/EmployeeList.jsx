@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom"
 import { DataTable } from "data-table-jp"
+// import DataTable from "../../ui/dataTable/DataTable"
 import { getEmployees } from "../../../services/api"
 
-const dataTable = () => ({
+const dataTable = {
   id: "employee-table",
   columns: [
     { title: "First Name", data: "firstName" },
@@ -15,9 +16,11 @@ const dataTable = () => ({
     { title: "State", data: "state" },
     { title: "Zip Code", data: "zipCode" },
   ],
-  data: getEmployees,
-  options: { pageSizeOptions: [10, 25, 50, 100] },
-})
+  getData: getEmployees,
+  pageSizeOptions: [10, 25, 50, 100],
+  sortBy: "firstName",
+  sortDirection: "asc",
+}
 
 function EmployeeList() {
   return (
