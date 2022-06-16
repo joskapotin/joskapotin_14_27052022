@@ -29,8 +29,8 @@ function CreateEmployee() {
       <form className="create-employee-form mx-auto" onSubmit={handleSubmit(onSubmit)}>
         <Input type="text" name="firstName" label="First Name" register={register} />
         <Input type="text" name="lastName" label="Last Name" register={register} />
-        <Input type="data" name="dateOfBirth" label="Date of Birth" register={register} />
-        <Input type="data" name="startDate" label="Start Date" register={register} />
+        <Input type="date" name="dateOfBirth" label="Date of Birth" register={register} />
+        <Input type="date" name="startDate" label="Start Date" register={register} />
         <FieldSet title="Address">
           <Input type="text" name="street" label="Street" register={register} />
           <Input type="text" name="city" label="City" register={register} />
