@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
-import useToggle from "../../../utils/hooks/useToggle"
+import useToggle from "../../../utils/hooks/useToggle/useToggle"
 import Input from "../../ui/form/input/Input"
 import Select from "../../ui/form/select/Select"
 import FieldSet from "../../ui/form/fieldset/FieldSet"
