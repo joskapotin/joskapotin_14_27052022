@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import DataTable from "data-table-jp"
-import "../../../node_modules/data-table-jp/dist/style.css"
+import "data-table-jp/dist/style.css"
 import useAsync from "../../hooks/useAsync/useAsync"
 import { getEmployees } from "../../services/api"
 
