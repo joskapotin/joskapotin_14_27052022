@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
-import useToggle from "../../../utils/hooks/useToggle/useToggle"
-import Input from "../../ui/form/input/Input"
-import Select from "../../ui/form/select/Select"
-import FieldSet from "../../ui/form/fieldset/FieldSet"
-import Button from "../../ui/form/button/Button"
-import Modal from "../../ui/modal/Modal"
-import formOptions from "../../../constants/formOptions"
-import { saveEmployee } from "../../../services/api"
+import useToggle from "../../hooks/useToggle/useToggle"
+import Input from "../../components/form/input/Input"
+import Select from "../../components/form/select/Select"
+import FieldSet from "../../components/form/fieldset/FieldSet"
+import Button from "../../components/form/button/Button"
+import Modal from "../../components/modal/Modal"
+import formOptions from "../../constants/formOptions"
+import { saveEmployee } from "../../services/api"
 
 function CreateEmployee() {
   const [isOpen, toggle] = useToggle(false)

@@ -1,4 +1,4 @@
-const employees = [
+const mockedEmployees = [
   {
     firstName: "Basia",
     lastName: "Osborn",
@@ -408,4 +408,4 @@ const employees = [
   },
 ]
 
-export default employees
+export default mockedEmployees

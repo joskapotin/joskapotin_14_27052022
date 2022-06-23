@@ -1,7 +1,16 @@
-/* eslint-disable import/prefer-default-export */
+import dataTable from "../mock/dataTable"
+import { stall } from "../utilities/helpers"
 
 /**
- * It is a function that saves data to the API.
+ * It get datatable param from a fake api
+ */
+export async function getEmployees() {
+  await stall(1500)
+  return dataTable()
+}
+
+/**
+ * It saves data to the API.
  * For the sake of this example, it is a fake API.
  *
  * @param {object} employee

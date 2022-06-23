@@ -1,7 +1,6 @@
 import { useEffect, useReducer } from "react"
 import { requestStarted, requestSuccessful, requestFailed } from "./reducer/actionCreators"
 import reducer, { initialState } from "./reducer/reducer"
-import { stall } from "../../helpers/helpers"
 
 const useFetch = ({ url }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -11,8 +10,6 @@ const useFetch = ({ url }) => {
 
     const fetchData = async () => {
       dispatch(requestStarted())
-
-      await stall(1500) // Simulate latency
 
       try {
         const response = await fetch(url, { signal: abortController.signal })

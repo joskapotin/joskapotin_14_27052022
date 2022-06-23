@@ -1,13 +1,11 @@
-import mockedEmployees from "./mock/employees.js"
+import mockedEmployees from "./employees"
 
-$(() => {
+const dataTable = () => {
   const localEmployees = JSON.parse(localStorage.getItem("employees"))
-
   const employees = localEmployees || mockedEmployees
 
-  $("#employee-table").DataTable({
-    data: employees,
-    columns: [
+  return {
+    labels: [
       { title: "First Name", data: "firstName" },
       { title: "Last Name", data: "lastName" },
       { title: "Start Date", data: "startDate" },
@@ -18,5 +16,11 @@ $(() => {
       { title: "State", data: "state" },
       { title: "Zip Code", data: "zipCode" },
     ],
-  })
-})
+    entries: employees,
+    pageSizeOptions: [10, 25, 50, 100],
+    sortBy: "firstName",
+    sortDirection: "asc",
+  }
+}
+
+export default dataTable
