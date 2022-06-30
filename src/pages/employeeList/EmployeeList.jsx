@@ -13,7 +13,7 @@ function EmployeeList() {
         <h1>Current Employees</h1>
       </div>
       {loading && <div>Loading...</div>}
-      {value && <DataTable dataTable={value} />}
+      {value && <DataTable config={value} />}
       {error && <div>{error}</div>}
       <p className="text-center">
         <Link to="/">Home</Link>
