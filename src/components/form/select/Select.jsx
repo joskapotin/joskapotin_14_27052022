@@ -7,7 +7,7 @@ function Select({ name, label, options, register }) {
         {label}
       </label>
       <select id={name} name={name} className="form-control" {...register(name)}>
-        {options.map((option) => (
+        {options.map(option => (
           <option key={`option-${option.name}`} value={option.abbreviation}>
             {option.name}
           </option>

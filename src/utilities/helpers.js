@@ -6,7 +6,7 @@
  * @param {integer} stallTime - The time in milliseconds for the promise to be resolved.
  */
 export async function stall(stallTime = 1000) {
-  await new Promise((resolve) => {
+  await new Promise(resolve => {
     setTimeout(resolve, stallTime)
   })
 }

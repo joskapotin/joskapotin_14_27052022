@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import DataTable from "data-table-jp"
-import "data-table-jp/dist/style.css"
+import DataTable from "@jpotin/data-table-react"
+import "@jpotin/data-table-react/dist/style.css"
 import useAsync from "../../hooks/useAsync/useAsync"
 import { getEmployees } from "../../services/api"
 
@@ -13,7 +13,7 @@ function EmployeeList() {
         <h1>Current Employees</h1>
       </div>
       {loading && <div>Loading...</div>}
-      {value && <DataTable config={value} />}
+      {value && <DataTable data={value} />}
       {error && <div>{error}</div>}
       <p className="text-center">
         <Link to="/">Home</Link>

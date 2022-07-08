@@ -13,7 +13,7 @@ function CreateEmployee() {
   const [isOpen, toggle] = useToggle(false)
   const { register, handleSubmit } = useForm()
 
-  const onSubmit = (employee) => {
+  const onSubmit = employee => {
     saveEmployee(employee)
     toggle()
   }
