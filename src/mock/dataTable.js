@@ -17,7 +17,6 @@ const dataTable = () => {
       { title: "Zip Code", data: "zipCode" },
     ],
     entries: employees,
-    pageSizeOptions: [10, 25, 50, 100],
     sortBy: "firstName",
     sortDirection: "asc",
   }

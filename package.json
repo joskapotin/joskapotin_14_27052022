@@ -27,7 +27,7 @@
     ]
   },
   "dependencies": {
-    "@jpotin/data-table-react": "^0.0.0",
+    "@jpotin/data-table-react": "^0.0.5",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
