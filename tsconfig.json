@@ -21,8 +21,7 @@
         "experimentalDecorators": true,
         "noEmit": true,
         "jsx": "react-jsx",
-        "incremental": true,
-        "baseUrl": "./"
+        "incremental": true
     },
     "include": ["vite.config.ts", "**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules"],
