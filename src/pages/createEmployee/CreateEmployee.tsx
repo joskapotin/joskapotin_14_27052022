@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading, no-console */
+
 import type { SubmitHandler } from 'react-hook-form'
-import { useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 
 import Button from '../../components/form/button/Button'
@@ -25,7 +27,7 @@ export type FormData = {
 
 function CreateEmployee() {
     const { value: isopen, toggle } = useToggle(false)
-    const { register, handleSubmit } = useForm<FormData>()
+    const methods = useForm<FormData>()
 
     const onSubmit: SubmitHandler<FormData> = formData => {
         saveEmployee(formData)
@@ -40,68 +42,37 @@ function CreateEmployee() {
                 <h2>Create Employee</h2>
             </div>
 
-            <form
-                className="create-employee-form mx-auto"
-                onSubmit={handleSubmit(onSubmit)}
-            >
-                <Input
-                    type="text"
-                    name="firstName"
-                    label="First Name"
-                    register={register}
-                />
-                <Input
-                    type="text"
-                    name="lastName"
-                    label="Last Name"
-                    register={register}
-                />
-                <Input
-                    type="date"
-                    name="dateOfBirth"
-                    label="Date of Birth"
-                    register={register}
-                />
-                <Input
-                    type="date"
-                    name="startDate"
-                    label="Start Date"
-                    register={register}
-                />
-                <FieldSet title="Address">
+            <FormProvider {...methods}>
+                <form
+                    className="create-employee-form mx-auto"
+                    onSubmit={methods.handleSubmit(onSubmit)}
+                >
+                    <Input type="text" name="firstName" label="First Name" />
+                    <Input type="text" name="lastName" label="Last Name" />
                     <Input
-                        type="text"
-                        name="street"
-                        label="Street"
-                        register={register}
+                        type="date"
+                        name="dateOfBirth"
+                        label="Date of Birth"
                     />
-                    <Input
-                        type="text"
-                        name="city"
-                        label="City"
-                        register={register}
-                    />
+                    <Input type="date" name="startDate" label="Start Date" />
+                    <FieldSet title="Address">
+                        <Input type="text" name="street" label="Street" />
+                        <Input type="text" name="city" label="City" />
+                        <Select
+                            name="state"
+                            label="State"
+                            options={formOptions.states}
+                        />
+                        <Input type="number" name="zipCode" label="Zip Code" />
+                    </FieldSet>
                     <Select
-                        name="state"
-                        label="State"
-                        options={formOptions.states}
-                        register={register}
+                        name="department"
+                        label="Department"
+                        options={formOptions.departments}
                     />
-                    <Input
-                        type="number"
-                        name="zipCode"
-                        label="Zip Code"
-                        register={register}
-                    />
-                </FieldSet>
-                <Select
-                    name="department"
-                    label="Department"
-                    options={formOptions.departments}
-                    register={register}
-                />
-                <Button type="submit" text="save" />
-            </form>
+                    <Button type="submit" text="save" />
+                </form>
+            </FormProvider>
 
             <Modal title="Employee Created" isOpen={isopen} toggle={toggle}>
                 <p>

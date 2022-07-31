@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types'
+import { useFormContext } from 'react-hook-form'
 
 type InputProps = {
     type: 'text' | 'date' | 'number'
     name: string
     label: string
-    register: any
 }
 
-function Input({ type = 'text', name, label, register }: InputProps) {
+function Input({ type = 'text', name, label }: InputProps) {
+    const { register } = useFormContext()
     return (
         <div className="form-group mb-3">
             <label htmlFor={name} className="form-label">
@@ -33,5 +34,4 @@ Input.propTypes = {
     type: PropTypes.string,
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    register: PropTypes.func.isRequired,
 }

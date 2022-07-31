@@ -1,24 +1,20 @@
 import PropTypes from 'prop-types'
+import { useFormContext } from 'react-hook-form'
 
 type SelectProps = {
     name: string
     label: string
-    register: any
     options: { name: string; abbreviation?: string }[]
 }
 
-function Select({ name, label, options, register }: SelectProps) {
+function Select({ name, label, options }: SelectProps) {
+    const { register } = useFormContext()
     return (
         <div className="form-group mb-3">
             <label htmlFor={name} className="form-label">
                 {label}
             </label>
-            <select
-                id={name}
-                name={name}
-                className="form-control"
-                {...register(name)}
-            >
+            <select id={name} className="form-control" {...register(name)}>
                 {options.map(option => (
                     <option
                         key={`option-${option.name}`}
@@ -43,5 +39,4 @@ Select.propTypes = {
             abbreviation: PropTypes.string,
         })
     ).isRequired,
-    register: PropTypes.func.isRequired,
 }
