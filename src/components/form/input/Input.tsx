@@ -7,6 +7,9 @@ type InputProps = {
     label: string
 }
 
+/**
+ * A React component that is using the `useFormContext` hook from `react-hook-form` to register the `input` element with the form.
+ */
 function Input({ type = 'text', name, label }: InputProps) {
     const { register } = useFormContext()
     return (

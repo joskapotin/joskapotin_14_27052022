@@ -1,5 +1,5 @@
 import dataTable from '../mock/dataTable'
-import type { FormData } from '../pages/createEmployee/CreateEmployee'
+import type { FormData } from '../pages/createEmployee/CreateEmployeeForm/CreateEmployeeForm'
 
 type Employee = FormData
 

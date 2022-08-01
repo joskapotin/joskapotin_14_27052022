@@ -7,6 +7,9 @@ type SelectProps = {
     options: { name: string; abbreviation?: string }[]
 }
 
+/**
+ * A React component that is using the `useFormContext` hook from `react-hook-form` to register the `select` element with the form.
+ */
 function Select({ name, label, options }: SelectProps) {
     const { register } = useFormContext()
     return (
