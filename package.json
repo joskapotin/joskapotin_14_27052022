@@ -16,7 +16,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@jpotin/data-table-react": "^0.0.8",
+    "@jpotin/data-table-react": "^0.0.9",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
