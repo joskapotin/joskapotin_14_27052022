@@ -1,25 +1,25 @@
-import PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
 
 type ButtonProps = {
-    type?: 'submit' | 'reset' | 'button'
-    text: string
+  type?: 'submit' | 'reset' | 'button'
+  text: string
 }
 
 function Button({ type, text }: ButtonProps) {
-    return (
-        <div className="mb-3">
-            <input type={type} className="btn btn-primary mb-3" value={text} />
-        </div>
-    )
+  return (
+    <div className='mb-3'>
+      <input type={type} className='btn btn-primary mb-3' value={text} />
+    </div>
+  )
 }
 
 export default Button
 
 Button.defaultProps = {
-    type: 'button',
+  type: 'button',
 }
 
 Button.propTypes = {
-    type: PropTypes.string,
-    text: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  text: PropTypes.string.isRequired,
 }

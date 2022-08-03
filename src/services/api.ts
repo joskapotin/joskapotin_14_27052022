@@ -1,21 +1,42 @@
-import dataTable from '../mock/dataTable'
-import type { FormData } from '../pages/createEmployee/CreateEmployeeForm/CreateEmployeeForm'
+import type { Employee } from '../@types/types'
+import mockedEmployees from '../mock/employees'
 
-type Employee = FormData
+export type Response = { employees: Employee[]; message: string }
 
 /**
- * It get datatable param from a fake API
+ * It get employees from local storage or mock data if it's not exist
  */
-export async function getEmployees() {
-    return dataTable()
+const getEmployees = async () => {
+  const item = localStorage.getItem('employees')
+  const localEmployees = item ? (JSON.parse(item) as Employee[]) : null
+  const employees = localEmployees || mockedEmployees
+
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({ employees, message: 'Employees loaded' })
+    }, 1000)
+  }) as Promise<Response>
 }
 
 /**
- * It saves data to a fake API.
+ * It saves employees to local storage
  */
-export function saveEmployee(employee: Employee) {
-    const item = localStorage.getItem('employees')
-    const employees = item ? JSON.parse(item) : []
-    employees.push(employee)
-    localStorage.setItem('employees', JSON.stringify(employees))
+const saveEmployee = async (employee: Employee) => {
+  const item = localStorage.getItem('employees')
+  const employees = item ? JSON.parse(item) : []
+  employees.push(employee)
+  localStorage.setItem('employees', JSON.stringify(employees))
+
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({ employees, message: 'Employee was successfully created' })
+    }, 1000)
+  }) as Promise<Response>
 }
+
+const api = {
+  getEmployees,
+  saveEmployee,
+}
+
+export default api
