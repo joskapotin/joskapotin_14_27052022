@@ -2,12 +2,13 @@ import DataTable from '@jpotin/data-table-react'
 import { Link } from 'react-router-dom'
 
 import '@jpotin/data-table-react/dist/style.css'
+import Loading from '../../components/loading/Loading'
 import ROUTES from '../../constants/routes'
 import useAppSelector from '../../hooks/useAppSelector/useAppSelector'
-import { selectEmployees, selectIsLoading } from '../../utils/selectors'
+import { selectEmployees, selectStatus } from '../../utils/selectors'
 
 function EmployeeList() {
-  const loading = useAppSelector(selectIsLoading)
+  const { isLoading, isError, message } = useAppSelector(selectStatus)
   const employees = useAppSelector(selectEmployees)
 
   const dataTable = {
@@ -32,7 +33,7 @@ function EmployeeList() {
       <div className='text-center'>
         <h1>Current Employees</h1>
       </div>
-      {loading ? <p>Loading</p> : <DataTable data={dataTable} />}
+      {isLoading ? <Loading /> : isError ? <p>{message}</p> : <DataTable data={dataTable} />}
       <p className='text-center'>
         <Link to={ROUTES.HOME}>Home</Link>
       </p>

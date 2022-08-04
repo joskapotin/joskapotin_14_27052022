@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom'
 import Modal from '../../../../components/modal/Modal'
 import ROUTES from '../../../../constants/routes'
 import useAppSelector from '../../../../hooks/useAppSelector/useAppSelector'
-import { selectIsError, selectIsLoading, selectMessage } from '../../../../utils/selectors'
+import { selectStatus } from '../../../../utils/selectors'
 
 function CreateEmployeeModal() {
-  const isError = useAppSelector(selectIsError)
-  const message = useAppSelector(selectMessage)
-  const isLoading = useAppSelector(selectIsLoading)
+  const { isLoading, isError, message } = useAppSelector(selectStatus)
 
   if (isLoading)
     <Modal title='Please wait'>
