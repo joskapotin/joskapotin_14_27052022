@@ -22,7 +22,7 @@ function CreateEmployeeFormModal({ modalType }: CreateEmployeeFormModalProps) {
             Your employee has been saved.
             <br />
             <Link to={ROUTES.EMPLOYEES_LIST}>View all employees</Link>
-          </p>{' '}
+          </p>
         </Modal>
       )
     case 'error':

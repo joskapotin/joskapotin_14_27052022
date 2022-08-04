@@ -16,8 +16,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@jpotin/data-table-react": "^0.0.9",
-    "@reduxjs/toolkit": "^1.8.3",
+    "@jpotin/data-table-react": "^0.1.2",
     "@tanstack/react-query": "^4.0.10",
     "@tanstack/react-query-devtools": "^4.0.10",
     "prop-types": "^15.8.1",

@@ -15,10 +15,10 @@ import CreateEmployeeFormModal from './createEmployeeFromModal/createEmployeeFor
 function CreateEmployeeForm() {
   const queryClient = useQueryClient()
 
-  /* A hook that is used to make a mutation to the database. And invalidate the "getEmployees" query */
+  /* A hook that is used to make a mutation to the database. And update the "getEmployees" query with the response */
   const mutation = useMutation((newEmployee: Employee) => api.saveEmployee(newEmployee), {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['getEmployees'])
+    onSuccess: data => {
+      queryClient.setQueryData(['getEmployees'], data.employees)
     },
   })
 

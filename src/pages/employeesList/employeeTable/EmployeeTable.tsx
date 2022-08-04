@@ -1,12 +1,14 @@
 import DataTable from '@jpotin/data-table-react'
+import { useQuery } from '@tanstack/react-query'
 
 import Loading from '../../../components/loading/Loading'
-import useEmployeesQuery from '../../../hooks/useEmployeesQuery/useEmployeesQuery'
+import api from '../../../services/api'
 import '@jpotin/data-table-react/dist/style.css'
 
 function EmployeeTable() {
-  const { isLoading, isError, error, isSuccess, data } = useEmployeesQuery()
-
+  const { isLoading, isError, error, isSuccess, data } = useQuery(['getEmployees'], () =>
+    api.getEmployees(),
+  )
   const dataTable = isSuccess && {
     labels: [
       { title: 'First Name', data: 'firstName' },
