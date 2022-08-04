@@ -8,14 +8,20 @@ import { selectStatus } from '../../../../utils/selectors'
 function CreateEmployeeModal() {
   const { isLoading, isError, message } = useAppSelector(selectStatus)
 
-  if (isLoading)
-    <Modal title='Please wait'>
-      <p className='loading'>{message}</p>
-    </Modal>
-  if (isError)
-    <Modal title='Something went wrong'>
-      <p className='error'>{message}</p>
-    </Modal>
+  if (isLoading) {
+    return (
+      <Modal title='Please wait'>
+        <p className='loading'>{message}</p>
+      </Modal>
+    )
+  }
+  if (isError) {
+    return (
+      <Modal title='Something went wrong'>
+        <p className='error'>{message}</p>
+      </Modal>
+    )
+  }
   return (
     <Modal title={message || 'HRNet modal'}>
       <p className='success'>

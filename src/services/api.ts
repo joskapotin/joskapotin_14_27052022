@@ -21,6 +21,7 @@ const getEmployees = async () => {
   // await stall(1000)
 
   return Promise.resolve({ employees, message: 'Employees loaded' })
+  // return Promise.reject(new Error('Employees not found'))
 }
 
 /**
@@ -35,6 +36,7 @@ const saveEmployee = async (employee: Employee) => {
   // await stall(1000)
 
   return Promise.resolve({ employees, message: 'Employee was successfully created' })
+  // return Promise.reject(new Error('Employee was not created'))
 }
 
 const api = {

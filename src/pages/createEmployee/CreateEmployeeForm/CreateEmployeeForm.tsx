@@ -10,7 +10,7 @@ import Select from '../../../components/form/select/Select'
 import formOptions from '../../../constants/formOptions'
 import { saveEmployee } from '../../../features/employees/employeesSlice'
 import useAppDispatch from '../../../hooks/useAppDispatch/useAppDispatch'
-import CreateEmployeeModal from './CreateEmployeeModal/CreateEmployeeModal'
+import CreateEmployeeModal from './createEmployeeModal/CreateEmployeeModal'
 
 function CreateEmployeeForm() {
   const dispatch = useAppDispatch()
