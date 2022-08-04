@@ -1,18 +1,21 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { Provider } from 'react-redux'
 import { HashRouter as Router } from 'react-router-dom'
 
 import App from './app'
-import store from './store'
+
+const queryClient = new QueryClient()
 
 const root = createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Router>
+    <Router>
+      <QueryClientProvider client={queryClient}>
         <App />
-      </Router>
-    </Provider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </Router>
   </React.StrictMode>,
 )

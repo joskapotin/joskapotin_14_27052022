@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading, no-console */
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import type { SubmitHandler } from 'react-hook-form'
 import { FormProvider, useForm } from 'react-hook-form'
 
@@ -8,17 +9,37 @@ import FieldSet from '../../../components/form/fieldset/FieldSet'
 import Input from '../../../components/form/input/Input'
 import Select from '../../../components/form/select/Select'
 import formOptions from '../../../constants/formOptions'
-import { saveEmployee } from '../../../features/employees/employeesSlice'
-import useAppDispatch from '../../../hooks/useAppDispatch/useAppDispatch'
-import CreateEmployeeModal from './createEmployeeModal/CreateEmployeeModal'
+import api from '../../../services/api'
+import CreateEmployeeFormModal from './createEmployeeFromModal/createEmployeeFormModal'
 
 function CreateEmployeeForm() {
-  const dispatch = useAppDispatch()
+  const queryClient = useQueryClient()
+
+  /* A hook that is used to make a mutation to the database. And invalidate the "getEmployees" query */
+  const mutation = useMutation((newEmployee: Employee) => api.saveEmployee(newEmployee), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['getEmployees'])
+    },
+  })
 
   const methods = useForm<Employee>()
 
   const onSubmit: SubmitHandler<Employee> = formData => {
-    dispatch(saveEmployee(formData))
+    /* Calling the mutation function that was created by the useMutation hook. */
+    mutation.mutate(formData)
+  }
+
+  const modalType = () => {
+    if (mutation.isLoading) {
+      return 'loading'
+    }
+    if (mutation.isSuccess) {
+      return 'success'
+    }
+    if (mutation.isError) {
+      return 'error'
+    }
+    return 'none'
   }
 
   return (
@@ -40,7 +61,7 @@ function CreateEmployeeForm() {
         </form>
       </FormProvider>
 
-      <CreateEmployeeModal />
+      <CreateEmployeeFormModal modalType={modalType()} />
     </>
   )
 }
