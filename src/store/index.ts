@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import employeesReducer from '../features/employees/employeesSlice'
+import modalReducer from '../features/modal/modalSlice'
 
 const store = configureStore({
   reducer: {
     employees: employeesReducer,
+    modal: modalReducer,
   },
 })
 

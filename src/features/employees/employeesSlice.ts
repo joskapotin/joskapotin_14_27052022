@@ -7,16 +7,14 @@ import api from '../../services/api'
 type InitialState = {
   isLoading: boolean
   isError: boolean
-  getMessage: string | null
-  saveMessage: string | null
+  message: string | null
   list: Employee[]
 }
 
 const initialState = {
   isLoading: false,
   isError: false,
-  getMessage: null,
-  saveMessage: null,
+  message: null,
   list: [],
 } as InitialState
 
@@ -47,45 +45,41 @@ const saveEmployee = createAsyncThunk<Response, Employee, { rejectValue: string 
 const employeesSlice = createSlice({
   name: 'employees',
   initialState,
-  reducers: {
-    closeSaveMessage: (state: InitialState) => {
-      state.isError = false
-      state.saveMessage = null
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(getEmployees.pending, state => {
         state.isLoading = true
+        state.message = 'Loading employees...'
       })
       .addCase(getEmployees.fulfilled, (state, action) => {
         state.isLoading = false
         state.isError = false
-        state.getMessage = action.payload.message
+        state.message = `Application ready. ${action.payload.message}`
         state.list = action.payload.employees
       })
       .addCase(getEmployees.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
-        state.getMessage = action.payload as string
+        state.message = `Application not ready. ${action.payload}`
       })
       .addCase(saveEmployee.pending, state => {
         state.isLoading = true
+        state.message = 'Creating employee...'
       })
       .addCase(saveEmployee.fulfilled, (state, action) => {
         state.isLoading = false
         state.isError = false
-        state.saveMessage = action.payload.message
+        state.message = action.payload.message
         state.list = action.payload.employees
       })
       .addCase(saveEmployee.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
-        state.saveMessage = action.payload as string
+        state.message = action.payload as string
       })
   },
 })
 
 export default employeesSlice.reducer
-export const { closeSaveMessage } = employeesSlice.actions
 export { getEmployees, saveEmployee }

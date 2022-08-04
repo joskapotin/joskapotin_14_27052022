@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 import '@jpotin/data-table-react/dist/style.css'
 import ROUTES from '../../constants/routes'
 import useAppSelector from '../../hooks/useAppSelector/useAppSelector'
-import { selectEmployees, selectLoading } from '../../utils/selectors'
+import { selectEmployees, selectIsLoading } from '../../utils/selectors'
 
 function EmployeeList() {
-  const loading = useAppSelector(selectLoading)
+  const loading = useAppSelector(selectIsLoading)
   const employees = useAppSelector(selectEmployees)
 
   const dataTable = {

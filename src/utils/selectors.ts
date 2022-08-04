@@ -1,8 +1,9 @@
 import type { RootState } from '../store'
 
-const selectLoading = (state: RootState) => state.employees.isLoading
+const selectIsLoading = (state: RootState) => state.employees.isLoading
 const selectIsError = (state: RootState) => state.employees.isError
-const selectSaveMessage = (state: RootState) => state.employees.saveMessage
+const selectMessage = (state: RootState) => state.employees.message
 const selectEmployees = (state: RootState) => state.employees.list
+const selectModalIsOpen = (state: RootState) => state.modal.isOpen
 
-export { selectLoading, selectIsError, selectSaveMessage, selectEmployees }
+export { selectIsLoading, selectIsError, selectMessage, selectEmployees, selectModalIsOpen }

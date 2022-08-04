@@ -1,25 +1,19 @@
 /* eslint-disable react/jsx-props-no-spreading, no-console */
 import type { SubmitHandler } from 'react-hook-form'
 import { FormProvider, useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
 
 import type { Employee } from '../../../@types/types'
 import Button from '../../../components/form/button/Button'
 import FieldSet from '../../../components/form/fieldset/FieldSet'
 import Input from '../../../components/form/input/Input'
 import Select from '../../../components/form/select/Select'
-import Modal from '../../../components/modal/Modal'
 import formOptions from '../../../constants/formOptions'
-import ROUTES from '../../../constants/routes'
-import { closeSaveMessage, saveEmployee } from '../../../features/employees/employeesSlice'
+import { saveEmployee } from '../../../features/employees/employeesSlice'
 import useAppDispatch from '../../../hooks/useAppDispatch/useAppDispatch'
-import useAppSelector from '../../../hooks/useAppSelector/useAppSelector'
-import { selectIsError, selectSaveMessage } from '../../../utils/selectors'
+import CreateEmployeeModal from './CreateEmployeeModal/CreateEmployeeModal'
 
 function CreateEmployeeForm() {
   const dispatch = useAppDispatch()
-  const isError = useAppSelector(selectIsError)
-  const message = useAppSelector(selectSaveMessage)
 
   const methods = useForm<Employee>()
 
@@ -46,15 +40,7 @@ function CreateEmployeeForm() {
         </form>
       </FormProvider>
 
-      <Modal title='Employee Created' isOpen={!!message} close={() => dispatch(closeSaveMessage())}>
-        {isError ? (
-          <p className='error'>Something went wrong: {message}</p>
-        ) : (
-          <p>
-            {message}. You can view the employees <Link to={ROUTES.EMPLOYEES_LIST}>here</Link>.
-          </p>
-        )}
-      </Modal>
+      <CreateEmployeeModal />
     </>
   )
 }
