@@ -4,6 +4,13 @@ import mockedEmployees from '../mock/employees'
 export type Response = { employees: Employee[]; message: string }
 
 /**
+ * Simulate slow async calls
+ */
+// const stall = async (stallTime = 3000) => {
+//   await new Promise(resolve => setTimeout(resolve, stallTime))
+// }
+
+/**
  * It get employees from local storage or mock data if it's not exist
  */
 const getEmployees = async () => {
@@ -11,11 +18,9 @@ const getEmployees = async () => {
   const localEmployees = item ? (JSON.parse(item) as Employee[]) : null
   const employees = localEmployees || mockedEmployees
 
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({ employees, message: 'Employees loaded' })
-    }, 1000)
-  }) as Promise<Response>
+  // await stall(1000)
+
+  return Promise.resolve({ employees, message: 'Employees loaded' })
 }
 
 /**
@@ -27,11 +32,9 @@ const saveEmployee = async (employee: Employee) => {
   employees.push(employee)
   localStorage.setItem('employees', JSON.stringify(employees))
 
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({ employees, message: 'Employee was successfully created' })
-    }, 1000)
-  }) as Promise<Response>
+  // await stall(1000)
+
+  return Promise.resolve({ employees, message: 'Employee was successfully created' })
 }
 
 const api = {
