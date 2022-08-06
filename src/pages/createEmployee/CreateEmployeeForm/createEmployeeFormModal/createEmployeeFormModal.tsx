@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import Modal from '../../../../components/modal/Modal'
@@ -8,14 +7,19 @@ import ROUTES from '../../../../constants/routes'
 
 type CreateEmployeeFormModalProps = {
   mutationState: typeof MUTATION.STATE[keyof typeof MUTATION.STATE] | null
+  isOpen: boolean
   setIsOpen: (isOpen: boolean) => void
 }
 
-function CreateEmployeeFormModal({ mutationState, setIsOpen }: CreateEmployeeFormModalProps) {
+function CreateEmployeeFormModal({
+  mutationState,
+  isOpen,
+  setIsOpen,
+}: CreateEmployeeFormModalProps) {
   const modalArray = [
     {
-      id: 1,
       status: MUTATION.STATE.LOADING,
+      control: false,
       title: 'Loading...',
       body: (
         <>
@@ -25,8 +29,8 @@ function CreateEmployeeFormModal({ mutationState, setIsOpen }: CreateEmployeeFor
       ),
     },
     {
-      id: 2,
       status: MUTATION.STATE.SUCCESS,
+      control: true,
       title: 'Success!',
       body: (
         <>
@@ -39,8 +43,8 @@ function CreateEmployeeFormModal({ mutationState, setIsOpen }: CreateEmployeeFor
       ),
     },
     {
-      id: 3,
       status: MUTATION.STATE.ERROR,
+      control: true,
       title: 'Something went wrong',
       body: (
         <>
@@ -57,15 +61,10 @@ function CreateEmployeeFormModal({ mutationState, setIsOpen }: CreateEmployeeFor
   const modal = modalArray.find(m => m.status === mutationState)
 
   return modal ? (
-    <Modal title={modal.title} setIsOpen={setIsOpen}>
+    <Modal title={modal.title} isOpen={isOpen} setIsOpen={modal.control ? setIsOpen : null}>
       {modal.body}
     </Modal>
   ) : null
 }
 
 export default CreateEmployeeFormModal
-
-CreateEmployeeFormModal.propTypes = {
-  mutationState: PropTypes.oneOf(['loading', 'success', 'error', null]).isRequired,
-  setIsOpen: PropTypes.func.isRequired,
-}

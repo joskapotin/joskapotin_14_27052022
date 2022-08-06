@@ -1,5 +1,3 @@
-import * as PropTypes from 'prop-types'
-
 type ButtonProps = {
   type?: 'submit' | 'reset' | 'button'
   text: string
@@ -17,9 +15,4 @@ export default Button
 
 Button.defaultProps = {
   type: 'button',
-}
-
-Button.propTypes = {
-  type: PropTypes.string,
-  text: PropTypes.string.isRequired,
 }

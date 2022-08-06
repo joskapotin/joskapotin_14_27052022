@@ -1,4 +1,3 @@
-import * as PropTypes from 'prop-types'
 import { useFormContext } from 'react-hook-form'
 
 type SelectProps = {
@@ -29,14 +28,3 @@ function Select({ name, label, options }: SelectProps) {
 }
 
 export default Select
-
-Select.propTypes = {
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      abbreviation: PropTypes.string,
-    }),
-  ).isRequired,
-}

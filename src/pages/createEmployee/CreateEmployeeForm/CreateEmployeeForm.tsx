@@ -23,6 +23,7 @@ function CreateEmployeeForm() {
   const mutation = useMutation((newEmployee: Employee) => api.saveEmployee(newEmployee), {
     onSuccess: data => {
       queryClient.setQueryData(['getEmployees'], data.employees)
+      methods.reset()
     },
   })
 
@@ -64,9 +65,11 @@ function CreateEmployeeForm() {
         </form>
       </FormProvider>
 
-      {isOpen && (
-        <CreateEmployeeFormModal mutationState={getMutationState()} setIsOpen={setIsOpen} />
-      )}
+      <CreateEmployeeFormModal
+        mutationState={getMutationState()}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
     </>
   )
 }
