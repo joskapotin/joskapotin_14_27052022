@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import Loading from './components/loading/Loading'
 
-import './app.css'
+import './app.scss'
 
 const CreateEmployee = lazy(() => import('./pages/createEmployee/CreateEmployee'))
 const EmployeeList = lazy(() => import('./pages/employeesList/EmployeesList'))

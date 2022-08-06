@@ -9,11 +9,15 @@ import FieldSet from '../../../components/form/fieldset/FieldSet'
 import Input from '../../../components/form/input/Input'
 import Select from '../../../components/form/select/Select'
 import formOptions from '../../../constants/formOptions'
+import MUTATIONS from '../../../constants/mutations'
+import useToggle from '../../../hooks/useToggle/useToggle'
 import api from '../../../services/api'
-import CreateEmployeeFormModal from './createEmployeeFromModal/createEmployeeFormModal'
+import CreateEmployeeFormModal from './createEmployeeFormModal/createEmployeeFormModal'
 
 function CreateEmployeeForm() {
+  const [isOpen, setIsOpen] = useToggle(false)
   const queryClient = useQueryClient()
+  const methods = useForm<Employee>()
 
   /* A hook that is used to make a mutation to the database. And update the "getEmployees" query with the response */
   const mutation = useMutation((newEmployee: Employee) => api.saveEmployee(newEmployee), {
@@ -22,24 +26,23 @@ function CreateEmployeeForm() {
     },
   })
 
-  const methods = useForm<Employee>()
-
   const onSubmit: SubmitHandler<Employee> = formData => {
     /* Calling the mutation function that was created by the useMutation hook. */
     mutation.mutate(formData)
+    setIsOpen(true)
   }
 
-  const modalType = () => {
+  const getMutationState = () => {
     if (mutation.isLoading) {
-      return 'loading'
+      return MUTATIONS.STATE.LOADING
     }
     if (mutation.isSuccess) {
-      return 'success'
+      return MUTATIONS.STATE.SUCCESS
     }
     if (mutation.isError) {
-      return 'error'
+      return MUTATIONS.STATE.ERROR
     }
-    return 'none'
+    return null
   }
 
   return (
@@ -61,7 +64,9 @@ function CreateEmployeeForm() {
         </form>
       </FormProvider>
 
-      <CreateEmployeeFormModal modalType={modalType()} />
+      {isOpen && (
+        <CreateEmployeeFormModal mutationState={getMutationState()} setIsOpen={setIsOpen} />
+      )}
     </>
   )
 }

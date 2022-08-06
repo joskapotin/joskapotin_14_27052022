@@ -1,0 +1,151 @@
+.loader {
+  $ball-nbr: 3;
+  $ball-size: 30px;
+  $gap: 30px;
+  $jump: -110px;
+  $duration: 1s;
+  $delay: 0.15s;
+  $color-primary: rgb(91, 192, 235);
+  $color-secondary: rgb(253, 231, 76);
+  $color-tertiary: rgb(155, 197, 61);
+
+  display: grid;
+  margin: auto;
+  column-gap: $gap;
+  grid-template-columns: repeat($ball-nbr, minmax(0, 1fr));
+  width: 20%;
+  min-width: $ball-size * $ball-nbr + $gap * ($ball-nbr - 1);
+  place-items: center;
+
+  .ball {
+    position: relative;
+    width: $ball-size;
+    height: $ball-size;
+    animation: jump $duration infinite both;
+    transform-origin: center;
+    border-radius: $ball-size;
+    cursor: pointer;
+    z-index: 999;
+  }
+
+  .ball:active {
+    animation-play-state: paused;
+  }
+
+  div:nth-of-type(1) {
+    background: $color-primary;
+    background: linear-gradient(0deg, darken($color-primary, 10) 0%, $color-primary 100%);
+  }
+
+  div:nth-of-type(2) {
+    background: $color-secondary;
+    background: linear-gradient(0deg, darken($color-secondary, 10) 0%, $color-secondary 100%);
+    animation-delay: $delay * 2;
+  }
+
+  div:nth-of-type(3) {
+    background: $color-tertiary;
+    background: linear-gradient(0deg, darken($color-tertiary, 10) 0%, $color-tertiary 100%);
+    animation-delay: $delay;
+  }
+
+  div:nth-of-type(5) {
+    animation-delay: $delay * 2;
+  }
+
+  div:nth-of-type(6) {
+    animation-delay: $delay;
+  }
+
+  .ball:active + div + div + div {
+    animation-play-state: paused;
+  }
+
+  .shadow {
+    display: inline-block;
+    position: relative;
+    bottom: 4px;
+    width: $ball-size;
+    height: 5px;
+    animation: shrink $duration infinite both;
+    border-radius: 50%;
+    background-color: #000;
+    opacity: 0.2;
+  }
+
+  @keyframes jump {
+    0% {
+      animation-timing-function: ease-in;
+      transform: translateY(0) scale(1.3, 0.4);
+      transform-origin: bottom;
+    }
+
+    15% {
+      animation-timing-function: ease-out;
+      transform: translateY(0);
+      transform-origin: center;
+    }
+
+    45% {
+      animation-timing-function: ease-in;
+      transform: translateY($jump) scale(0.8, 1.2);
+      transform-origin: top;
+    }
+
+    55% {
+      animation-timing-function: ease-in;
+      transform: translateY($jump) scale(0.8, 1.2);
+      transform-origin: top;
+    }
+
+    88% {
+      animation-timing-function: ease-out;
+      transform: translateY(0);
+      transform-origin: center;
+    }
+
+    100% {
+      animation-timing-function: ease-out;
+      transform: translateY(0) scale(1.3, 0.4);
+      transform-origin: bottom;
+    }
+  }
+
+  @keyframes shrink {
+    0% {
+      animation-timing-function: ease-in;
+      transform: scaleX(1);
+      opacity: 0.2;
+    }
+
+    15% {
+      animation-timing-function: ease-out;
+      transform: scaleX(1);
+      opacity: 0.2;
+    }
+
+    45% {
+      animation-timing-function: ease-in;
+      transform: scaleX(0.5);
+      opacity: 0.05;
+    }
+
+    55% {
+      animation-timing-function: ease-in;
+      transform: scaleX(0.5);
+      opacity: 0.05;
+    }
+
+    88% {
+      animation-timing-function: ease-out;
+      transform: scaleX(1);
+      opacity: 0.2;
+    }
+
+    100% {
+      animation-timing-function: ease-out;
+      transform: scaleX(1);
+      opacity: 0.2;
+    }
+  }
+}

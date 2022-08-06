@@ -1,7 +1,10 @@
+import Spinner from '../spinner/Spinner'
+
 function Loading() {
   return (
-    <div className='text-center fixed-bottom'>
-      <p>Loading... Please wait</p>
+    <div className='text-center fixed-center'>
+      <Spinner />
+      <p>Please wait while loading.</p>
     </div>
   )
 }
